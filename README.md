@@ -9,3 +9,5 @@ Capabilities:
 - Firestore powered lists for contributions + submissions
 - Markdown editor with Realtime Collaboration
 - Full mobile optimisation + PWA support
+
+![Apollo Showcase](apollo-showcase.jpg)
