@@ -1,9 +1,12 @@
 <template>
   <div class="flex h-full w-screen items-center flex-col p-4 my-10" >
       <h1 class="font-bold text-4xl mb-10 text-center">Submit your article</h1>
-      <div class="p-6 bg-white border rounded w-full max-w-lg flex flex-col mb-10" v-if="status === '1'">
+      <div class="p-6 bg-white border rounded-lg w-full max-w-lg flex flex-col mb-10 dark:bg-gray-800 dark:border-gray-900" v-if="status === '1'">
+        <div class="bg-red-500 p-4 text-white rounded mb-6 block" v-if="error">
+          <span class="block">{{error}}</span>
+        </div>
           <DynamicForm :schema="schema" :model-value="data" />
-            <label class="w-full block mb-2">Upload Article (.txt or Markdown File)</label>
+            <label class="w-full block mb-2 required-field">Upload Article (.txt or Markdown File)</label>
             <button class="btn bg-red-500" @click="openFile()" v-if="!uploaded">
               <font-awesome-icon class="mr-2" :icon="['fas', 'upload']"/>
               Upload 
@@ -20,7 +23,7 @@
       <div class="p-6 bg-white border rounded w-full max-w-lg" style="height: 593px; display: flex; justify-content: center; align-items: center;" v-if="status === '2'">
         <div class="loader"></div>
       </div>
-      <div class="p-6 bg-white border rounded w-full max-w-lg flex flex-col items-center" v-if="status === '3'">
+      <div class="p-6 bg-white border rounded w-full max-w-lg flex flex-col items-center dark:text-black" v-if="status === '3'">
         <img src="https://i.imgur.com/XT9JxqO.gif" height="135" width="135" class="mb-8">
         <span class="text-center">We've successfully recieved your article!<br> We'll be in touch soon over email with feedback/publication details!</span>
       </div>
@@ -50,28 +53,37 @@ export default {
 
     let status = ref('1');
 
+    let error = ref();
+
+
     let dateModified = today.getDate() + '/' +(today.getMonth()+1)+ '/' + today.getFullYear() + " (" + today.getHours() + ":" + today.getMinutes() + ")"
 
     const submitArticle = (name, email, title, type, link) => {
-      status.value = '2'
-      db.collection('submitted_articles').add({
-          name: name,
-          email: email,
-          title: title,
-          editor: "Assign Editor",
-          status: "Submitted",
-          type: type,
-          file: textFile,
-          link: link,
-          created_at: Date.now(),
-          modified: dateModified
-        }).then(() => {
-          status.value = '3'
-        })
+
+      if (uploaded.value && Object.keys(data).length === 5){
+        status.value = '2'
+        db.collection('submitted_articles').add({
+            name: name,
+            email: email, 
+            title: title,
+            editor: "Assign Editor",
+            status: "Submitted",
+            type: type,
+            file: textFile,
+            link: link,
+            created_at: Date.now(),
+            modified: dateModified
+          }).then(() => {
+            status.value = '3'
+          })
+      }
+      else{
+        error.value = "Please fill in all the required fields!"
+      }
     }
 
     return {
-      data, schema, submitArticle, openFile, uploaded, status
+      data, schema, submitArticle, openFile, uploaded, status, error
     }
   }
 }

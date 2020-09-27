@@ -1,7 +1,7 @@
 <template>
 <div v-if="visible">
-  <label v-if="label" class="w-full block mb-2">{{label}}</label>
-  <select :name="name" @input="$emit('input', $event.target.value)" class="block p-4 mb-8 w-full bg-white border border-gray-400 hover:border-gray-500 rounded leading-tight focus:outline-none focus:shadow-outline">
+  <label v-if="label" class="w-full block mb-2 required-field">{{label}}</label>
+  <select :name="name" @input="$emit('input', $event.target.value)" class="block p-4 mb-8 w-full bg-white border border-gray-400 hover:border-gray-500 rounded leading-tight focus:outline-none focus:shadow-outline dark:text-black ">
     <option value="" disabled selected>Select an option</option>
     <option v-for="option in options" :value="option.title" :key="option.id">{{option.title}}</option>
   </select>

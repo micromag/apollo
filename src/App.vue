@@ -23,9 +23,16 @@ export default {
 </script>
 
 <style>
+
 .post {
     padding: 12px;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
 }
+
+html
+body {
+    background-color: #f7fafc;
+}
+
 </style>
