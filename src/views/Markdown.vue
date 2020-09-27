@@ -19,7 +19,7 @@
   <div class="flex" :class="[isMobile ? 'flex-col' : '']">
     <div style="height: calc(100vh - 15rem) !important;" :class="[isMobile ? 'w-full mb-12' : 'w-1/2']">
       <span class="text-xl mb-8 font-extrabold">Editor</span>
-      <textarea v-model="source" class="rounded-lg mt-4 shadow-xl p-4 w-full h-full" v-on:keyUp="saveFile"></textarea>
+      <textarea v-model="source" class="rounded-lg mt-4 shadow-xl p-4 w-full h-full dark:bg-gray-700" v-on:keyUp="saveFile"></textarea>
     </div>
     <div style="height: calc(100vh - 15rem) !important;" :class="[isMobile ? 'w-full mt-6 mb-20' : 'w-1/2 ml-8']">
       <span class="text-xl mb-8 font-extrabold">Preview</span>

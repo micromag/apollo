@@ -14,7 +14,7 @@
         <span class="font-extrabold text-xl text-white">Submissions 🔖</span>
         <span class=" text-white block leading-12 text-center" style="font-size: 85px;"><b>{{noSubmissions}}</b></span>
     </div>
-    <div style="height: 250px;" class="bg-green-400 w-full rounded-lg shadow-xl p-4 mt-6">
+    <div style="height: 250px;" class="bg-green-400 w-full rounded-lg shadow-xl p-4 mt-6 dark:text-black">
         <span class="font-extrabold text-xl text-white">Handy Links 🔗</span>
         <div class="bg-white w-full h-12 rounded-lg mt-3 p-1 shadow-lg">
           <span class="inline-block align-middle pt-2 pl-2">Contribute Form</span>
@@ -35,7 +35,7 @@
           </button>
         </div>
       </div>
-      <div style="height: 250px;" class="bg-blue-900 w-full rounded-lg shadow-xl p-4 mt-6">
+      <div style="height: 250px;" class="bg-blue-900 w-full rounded-lg shadow-xl p-4 mt-6 dark:text-black">
         <span class="font-extrabold text-xl text-white">Handy Links 🔗</span>
         <div class="bg-white w-full h-12 rounded-lg mt-3 p-1 shadow-lg">
           <span class="inline-block align-middle pt-2 pl-2">Miro</span>
@@ -75,7 +75,7 @@
         <span class=" text-white block leading-12 text-center" style="font-size: 85px;"><b>{{noSubmissions}}</b></span>
       </div>
     </div>
-    <div class="flex mt-8">
+    <div class="flex mt-8 dark:text-black">
       <div style="height: 250px;" class="bg-green-400 w-1/2 rounded-lg shadow-xl p-4 mr-8">
         <span class="font-extrabold text-xl text-white">Handy Links 🔗</span>
         <div class="bg-white w-full h-12 rounded-lg mt-3 p-1 shadow-lg">

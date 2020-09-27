@@ -1,7 +1,7 @@
 <template>
     <Navbar :desktop="desktopOptions" :mobile="mobileOptions"/>
     <div class="flex-1 h-screen overflow-auto relative" style="padding: env(safe-area-inset-right) env(safe-area-inset-left);" :class="[isMobile ? 'mb-6' : '']">
-      <div class="border-b fixed top-0 left-0 right-0 safeMobile shadow-md" :class="[isMobile ? 'bg-blue-bar' : 'bg-white ml-64']" style="padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);">
+      <div class="border-b fixed top-0 left-0 right-0 safeMobile shadow-md dark:border-gray-800" :class="[isMobile ? 'bg-blue-bar dark:bg-gray-900' : 'bg-white ml-64 dark:bg-gray-900']" style="padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);">
           <div v-if="user" class="flex px-4 items-center h-16 float-left">
             <div v-if="isMobile" class="h-10 w-10 mr-4 rounded-md flex text-sm items-center justify-center font-extrabold text-blue-500">
                 <img src="/icons/apollo-logo.png">
@@ -57,10 +57,6 @@ export default {
 </script>
 
 <style lang="postcss">
-    #app {
-        @apply bg-gray-100 flex
-    }
-
     .safeMobile { 
         height: calc(env(safe-area-inset-top) + 4rem);
     }

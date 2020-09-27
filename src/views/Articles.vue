@@ -45,7 +45,7 @@
   </div>
 </div>
     <h1 class="text-3xl mb-4 font-semibold">Articles</h1>		
-		<div class="bg-white mb-4 shadow-lg">
+		<div class="bg-white mb-4 shadow-lg dark:bg-gray-800">
 			<nav class="flex flex-col sm:flex-row">
 				<button class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" :class="[tab === '1' ? 'text-blue-500 border-b-2 font-medium border-blue-500' : '']" @click="tab = '1'">
 					Proposed
@@ -61,18 +61,18 @@
 
 		<table class="w-full shadow-lg rounded-lg" v-if="tab === '1'">
 			<thead class="rounded-lg">
-				<tr class="text-left bg-gray-300 border-b border-grey uppercase">
-			        <th class="text-sm text-gray-700 px-4 py-6">Author Name</th>
-			        <th class="text-sm text-gray-700">Article Info</th>
-			        <th class="hidden md:table-cell text-sm text-gray-700">Contact Info</th>
-					<th class="hidden md:table-cell text-sm text-gray-700">Assigned to</th>
-					<th class="hidden md:table-cell text-sm text-gray-700">Status</th>
-					<th class="text-sm text-gray-700">Actions</th>
+				<tr class="text-left bg-gray-300 border-b border-grey uppercase dark:bg-gray-800 ">
+			        <th class="text-sm text-gray-700 px-4 py-6 dark:text-white">Author Name</th>
+			        <th class="text-sm text-gray-700 dark:text-white">Article Info</th>
+			        <th class="hidden md:table-cell text-sm text-gray-700 dark:text-white">Contact Info</th>
+					<th class="hidden md:table-cell text-sm text-gray-700 dark:text-white">Assigned to</th>
+					<th class="hidden md:table-cell text-sm text-gray-700 dark:text-white">Status</th>
+					<th class="text-sm text-gray-700 dark:text-white">Actions</th>
 			        <th></th>
 		      	</tr>
 			</thead>
-	        <tbody class="bg-white" v-if="proposed && proposed.length > 0">		
-		      	<tr class="accordion border-b border-grey-light items-center" v-for="item in proposed" :key="item.id" >
+	        <tbody class="bg-white dark:bg-gray-700" v-if="proposed && proposed.length > 0">		
+		      	<tr class="accordion border-b border-grey-light items-center dark:border-gray-800" v-for="item in proposed" :key="item.id" >
 			        <td class="flex inline-flex items-center px-3 py-2">
 			        	<span>
 			        		 <img
@@ -82,21 +82,21 @@
 					        />
 			        	</span>
 			        	<span class="py-3">
-			        		 <p class="text-gray-800 text-sm">{{item.name}}</p>
+			        		 <p class="text-gray-800 text-sm dark:text-white">{{item.name}}</p>
 							 <p class="text-xs text-gray-500 font-medium">{{item.modified}}</p>
 			        	</span>
 			        </td>
 			        <td class="py-3">
-			          <p class="text-sm text-gray-800 font-medium">{{item.title}}</p>
+			          <p class="text-sm text-gray-800 font-medium dark:text-white">{{item.title}}</p>
 			          <p class="text-xs text-gray-500 font-medium">{{item.type}}</p>
 			        </td>
 			        <td class="hidden md:table-cell">
-			          <p class="text-sm text-gray-700 font-medium">{{item.email}}</p>
+			          <p class="text-sm text-gray-700 font-medium dark:text-white">{{item.email}}</p>
 			        </td>
 					<td class="hidden md:table-cell">
 			          <div class="relative inline-flex">
 						<svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
-						<select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" @change="updateEditor(item.id, $event, 'proposed_articles')" :value="item.editor">
+						<select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none dark:text-white dark:bg-gray-700 dark:border-gray-800" @change="updateEditor(item.id, $event, 'proposed_articles')" :value="item.editor">
 							<option>Assign Editor</option>
 							<option>Joshua Lowe</option>
 							<option>Kerry Kidd</option>
@@ -106,7 +106,7 @@
 					<td class="hidden md:table-cell">
 			    	  <div class="relative inline-flex">
 						<svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
-						<select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" @change="updateStatus(item.id, $event, 'proposed_articles')" :value="item.status">
+						<select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none dark:text-white dark:bg-gray-700 dark:border-gray-800" @change="updateStatus(item.id, $event, 'proposed_articles')" :value="item.status">
 							<option>Proposed</option>
 							<option>Submitted</option>
 						</select>
@@ -123,18 +123,18 @@
 
 		<table class="w-full shadow-lg rounded-lg" v-if="tab === '2'">
 			<thead class="rounded-lg">
-				<tr class="text-left bg-gray-300 border-b border-grey uppercase">
-			        <th class="text-sm text-gray-700 px-4 py-6">Author Name</th>
-			        <th class="text-sm text-gray-700">Article Info</th>
-			        <th class="hidden md:table-cell text-sm text-gray-700">Contact Info</th>
-					<th class="hidden md:table-cell text-sm text-gray-700">Assigned to</th>
-					<th class="hidden md:table-cell text-sm text-gray-700">Status</th>
-					<th class="text-sm text-gray-700">Actions</th>
+				<tr class="text-left bg-gray-300 border-b border-grey uppercase dark:bg-gray-800">
+			        <th class="text-sm text-gray-700 px-4 py-6 dark:text-white">Author Name</th>
+			        <th class="text-sm text-gray-700 dark:text-white">Article Info</th>
+			        <th class="hidden md:table-cell text-sm text-gray-700 dark:text-white">Contact Info</th>
+					<th class="hidden md:table-cell text-sm text-gray-700 dark:text-white">Assigned to</th>
+					<th class="hidden md:table-cell text-sm text-gray-700 dark:text-white">Status</th>
+					<th class="text-sm text-gray-700 dark:text-white">Actions</th>
 			        <th></th>
 		      	</tr>
 			</thead>
-	        <tbody class="bg-white" v-if="submitted && submitted.length > 0">		
-		      	<tr class="accordion border-b border-grey-light items-center" v-for="item in submitted" :key="item.id" >
+	        <tbody class="bg-white dark:bg-gray-700" v-if="submitted && submitted.length > 0">		
+		      	<tr class="accordion border-b border-grey-light items-center dark:border-gray-800" v-for="item in submitted" :key="item.id" >
 			        <td class="flex inline-flex items-center px-3 py-2">
 			        	<span>
 			        		 <img
@@ -144,21 +144,21 @@
 					        />
 			        	</span>
 			        	<span class="py-3">
-			        		 <p class="text-gray-800 text-sm">{{item.name}}</p>
-							 <p class="text-xs text-gray-500 font-medium">{{item.modified}}</p>
+			        		 <p class="text-gray-800 text-sm dark:text-white">{{item.name}}</p>
+							 <p class="text-xs text-gray-500 font-medium ">{{item.modified}}</p>
 			        	</span>
 			        </td>
 			        <td class="py-3">
-			          <p class="text-sm text-gray-800 font-medium">{{item.title}}</p>
+			          <p class="text-sm text-gray-800 font-medium dark:text-white">{{item.title}}</p>
 			          <p class="text-xs text-gray-500 font-medium">{{item.type}}</p>
 			        </td>
 			        <td class="hidden md:table-cell">
-			          <p class="text-sm text-gray-700 font-medium">{{item.email}}</p>
+			          <p class="text-sm text-gray-700 font-medium dark:text-white">{{item.email}}</p>
 			        </td>
 					<td class="hidden md:table-cell">
 			          <div class="relative inline-flex">
 						<svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
-						<select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" @change="updateEditor(item.id, $event, 'submitted_articles')" :value="item.editor">
+						<select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none dark:text-white dark:bg-gray-700 dark:border-gray-800" @change="updateEditor(item.id, $event, 'submitted_articles')" :value="item.editor">
 							<option>Assign Editor</option>
 							<option>Joshua Lowe</option>
 							<option>Kerry Kidd</option>
@@ -168,7 +168,7 @@
 					<td class="hidden md:table-cell">
 			    	  <div class="relative inline-flex">
 						<svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
-						<select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" @change="updateStatus(item.id, $event, 'submitted_articles')" :value="item.status">
+						<select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none dark:text-white dark:bg-gray-700 dark:border-gray-800" @change="updateStatus(item.id, $event, 'submitted_articles')" :value="item.status">
 							<option>Submitted</option>
 							<option>Editing</option>
 							<option>Edited</option>

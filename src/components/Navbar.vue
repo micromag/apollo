@@ -1,7 +1,7 @@
 /* eslint-disable vue/require-default-prop */
 <template>
-    <div class="w-64 h-screen bg-blue-ap" v-if="!isMobile">
-    <div class="block px-4 flex items-center h-16 bg-opacity-10 border-b-2 dark-border cursor-pointer" @click="dropdown = dropdown != true">
+    <div class="w-64 h-screen bg-blue-ap dark:bg-gray-900" v-if="!isMobile">
+    <div class="block px-4 flex items-center h-16 bg-opacity-10 border-b-2 dark-border cursor-pointer dark:border-gray-800" @click="dropdown = dropdown != true">
         <div class="h-10 w-10 mr-4 rounded-md flex text-sm items-center justify-center font-extrabold text-blue-500">
             <img src="/icons/apollo-logo.png">
         </div>
@@ -25,7 +25,7 @@
         </router-link>
     </div>
  
-    <div class="fixed bottom-0 w-screen bg-blue-nav flex py-2 text-center z-10 shadow-2xl" v-else>
+    <div class="fixed bottom-0 w-screen bg-blue-nav flex py-2 text-center z-10 shadow-2xl dark:bg-gray-900" v-else>
         <router-link 
             v-for="option in mobile" 
             :key="option.name" :to="option.path" 
