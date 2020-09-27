@@ -8,4 +8,4 @@ Capabilities:
 - Admin accounts with Firebase
 - Firestore powered lists for contributions + submissions
 - Markdown editor with Realtime Collaboration
-
+- Full mobile optimisation + PWA support
