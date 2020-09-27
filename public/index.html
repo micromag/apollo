@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Crescent">
+  <meta name="apple-mobile-web-app-title" content="Crescent">
+  <meta name="theme-color" content="#0077ff">
+  <meta name="msapplication-navbutton-color" content="#0077ff"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-starturl" content="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"> 
+  <link rel="icon" href="/icons/apollo-logo-blue.png">
+  <link rel="apple-touch-icon" href="./icons/apollo-logo-blue.png"> 
+  <link rel="icon" href="/icons/apollo-logo-blue.png" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
+  <style>
+    html, body {
+      margin: 0
+    }
+    .loader {
+      border: 8px solid #eee; /* Light grey */
+      border-top: 8px solid #4299e1; /* Blue */
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      display: block;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+</style>
+
+  <title>Apollo</title>
+</head>
+<body>
+  <div id="app">
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw; overflow: hidden;">
+      <div class="loader"></div>
+    </div>
+  </div>
+  <script>
+    // CODELAB: Register service worker.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+      });
+    }
+  </script>
+</body>
+</html>

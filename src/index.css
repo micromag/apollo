@@ -1,0 +1,12 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+.bg-blue-nav {
+    background-color: #202D5B;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; } /* user agent */
+h3 { font-size: 1.17em; } /* user agent */
