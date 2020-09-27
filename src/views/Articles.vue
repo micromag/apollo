@@ -1,4 +1,5 @@
 <template>
+<transition name="fade">
 <div class="fixed z-10 inset-0 overflow-y-auto" v-if="open">
   <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
     <div class="fixed inset-0 transition-opacity">
@@ -44,6 +45,7 @@
     </div>
   </div>
 </div>
+</transition>
     <h1 class="text-3xl mb-4 font-semibold">Articles</h1>		
 		<div class="bg-white mb-4 shadow-lg dark:bg-gray-800">
 			<nav class="flex flex-col sm:flex-row">
