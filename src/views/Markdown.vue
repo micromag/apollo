@@ -104,8 +104,12 @@ export default {
    resize: none;
 }
 
-.markdown-body ol, .markdown-body ul {
+.markdown-body ol{
     padding-left: 2em;
     list-style-type: decimal !important;
+}
+
+.markdown-body ul {
+    list-style-type: disc !important;
 }
 </style>
