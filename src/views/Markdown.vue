@@ -19,11 +19,11 @@
   <div class="flex" :class="[isMobile ? 'flex-col' : '']">
     <div style="height: calc(100vh - 15rem) !important;" :class="[isMobile ? 'w-full mb-12' : 'w-1/2']">
       <span class="text-xl mb-8 font-extrabold">Editor</span>
-      <textarea v-model="source" class="rounded-lg mt-4 shadow-xl p-4 w-full h-full dark:bg-gray-700" v-on:keyUp="saveFile"></textarea>
+      <textarea v-model="source" class="rounded-lg mt-4 shadow-xl p-4 w-full h-full dark:bg-gray-700" v-on:keyUp="saveFile" id="left"></textarea>
     </div>
     <div style="height: calc(100vh - 15rem) !important;" :class="[isMobile ? 'w-full mt-6 mb-20' : 'w-1/2 ml-8']">
       <span class="text-xl mb-8 font-extrabold">Preview</span>
-      <VueMarkdownIt :source='source' class=" bg-white p-4 mt-4 rounded-lg shadow-xl markdown-body w-full h-full box-border overflow-auto overflow-x-hidden" />
+      <VueMarkdownIt :source='source' class=" bg-white p-4 mt-4 rounded-lg shadow-xl markdown-body w-full h-full box-border overflow-auto overflow-x-hidden" id="right" />
     </div>  
   </div>
 </template>
@@ -44,6 +44,28 @@ export default {
   },
   props: {
     id: String
+  },
+  mounted() {
+    var isSyncingLeftScroll = false;
+    var isSyncingRightScroll = false;
+    var leftDiv = document.getElementById('left');
+    var rightDiv = document.getElementById('right');
+
+    leftDiv.onscroll = function() {
+      if (!isSyncingLeftScroll) {
+        isSyncingRightScroll = true;
+        rightDiv.scrollTop = this.scrollTop;
+      }
+      isSyncingLeftScroll = false;
+    }
+
+    rightDiv.onscroll = function() {
+      if (!isSyncingRightScroll) {
+        isSyncingLeftScroll = true;
+        leftDiv.scrollTop = this.scrollTop;
+      }
+      isSyncingRightScroll = false;
+    }
   },
   setup(props) {
     let source = ref(markdownText)
@@ -75,10 +97,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '~github-markdown-css/github-markdown.css';
 
 textarea {
    resize: none;
+}
+
+.markdown-body ol, .markdown-body ul {
+    padding-left: 2em;
+    list-style-type: decimal !important;
 }
 </style>
