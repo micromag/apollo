@@ -125,7 +125,7 @@ export default {
       }, 200)
     }
 
-    return { source, markdownText, editingFile, saveFile, articlesPage, isMobile, loadExtras, info, updateFirebase }
+    return { source, markdownText, editingFile, articlesPage, isMobile, loadExtras, info, updateFirebase }
   }
 }
 </script>
