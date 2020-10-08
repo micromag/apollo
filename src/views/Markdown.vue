@@ -23,7 +23,7 @@
   <div class="flex" :class="[isMobile ? 'flex-col' : '']">
     <div style="height: calc(100vh - 15rem) !important;" :class="[isMobile ? 'w-full mb-12' : 'w-1/2']">
       <span class="text-xl mb-8 font-extrabold">Editor</span>
-      <textarea v-model="source" class="rounded-lg mt-4 shadow-xl p-4 w-full h-full dark:bg-gray-700 noResize" v-on:keyUp="saveFile" id="left"></textarea>
+      <textarea v-model="source" class="rounded-lg mt-4 shadow-xl p-4 w-full h-full dark:bg-gray-700 noResize" v-on:keyUp="updateFirebase" id="left"></textarea>
     </div>
     <div style="height: calc(100vh - 15rem) !important;" :class="[isMobile ? 'w-full mt-6 mb-20' : 'w-1/2 ml-8']">
       <span class="text-xl mb-8 font-extrabold">Preview</span>
@@ -50,7 +50,7 @@
 <script>
 import VueMarkdownIt from 'vue3-markdown-it';
 import { getText, markdownText, setSubmitted, editingFile, getExtras, extras } from '../use/useFirestore'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from '../router/router'
 import { db } from '../use/useFirebase'
@@ -108,14 +108,24 @@ export default {
       window.open(extraFile.value)
     }
 
-    const saveFile = () => {
+    let timeoutRef = null;
+
+    function updateFirebase() {
+      if (timeoutRef !== null) {
+        clearTimeout(timeoutRef);
+      }
+
+      timeoutRef = setTimeout(() => {
+
       let itemRef = db.collection("submitted_articles").doc(props.id)
-      return itemRef.update({
+      itemRef.update({
         file: source.value
       })
+
+      }, 200)
     }
 
-    return { source, markdownText, editingFile, saveFile, articlesPage, isMobile, loadExtras, info }
+    return { source, markdownText, editingFile, articlesPage, isMobile, loadExtras, info, updateFirebase }
   }
 }
 </script>
