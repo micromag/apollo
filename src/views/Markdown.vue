@@ -9,9 +9,13 @@
       <font-awesome-icon class="mr-2" :icon="['fas', 'times']"/>
         Exit
     </button>	
-    <button class="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-4 rounded float-right" :class="[isMobile ? 'w-full mt-3 mb-4' : 'mr-5']" @click="loadExtras">
+    <button class="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-4 rounded float-right" :class="[isMobile ? 'w-full mt-3' : 'mr-5']" @click="loadExtras">
       <font-awesome-icon class="mr-2" :icon="['fas', 'folder-open']"/>
         Extra Files
+    </button>	
+    <button class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right" :class="[isMobile ? 'w-full mt-3 mb-4' : 'mr-5']" @click="info = true">
+      <font-awesome-icon class="mr-2" :icon="['fas', 'info-circle']"/>
+        Info
     </button>	
   </div>
 
@@ -26,6 +30,21 @@
       <VueMarkdownIt :source='source' class=" bg-white p-4 mt-4 rounded-lg shadow-xl markdown-body w-full h-full box-border overflow-auto overflow-x-hidden" id="right" />
     </div>  
   </div>
+<transition name="fade">
+  <Modal title="Article Info" v-if="info">
+    <template v-slot:main>
+      <span class="font-extrabold">Character Count: </span>{{source.length}}<br>
+      <span class="font-extrabold">Word Count: </span>{{source.split(/\b\S+\b/).length - 1}}<br>
+    </template>
+    <template v-slot:buttons>
+      <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+        <button type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5" @click="info = false">
+            Close
+        </button>
+      </span>
+    </template>
+  </Modal>
+</transition>
 </template>
 
 <script>
@@ -36,11 +55,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from '../router/router'
 import { db } from '../use/useFirebase'
 import { useMobile } from '../use/useMobile'
+import Modal from '../components/Modal'
 
 export default {
   components: {
     VueMarkdownIt,
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    Modal
   },
   props: {
     id: String
@@ -70,6 +91,8 @@ export default {
   setup(props) {
     let source = ref(markdownText)
     let extraFile = ref(extras)
+
+    let info = ref(false)
     
     getText(props.id)
 
@@ -92,7 +115,7 @@ export default {
       })
     }
 
-    return { source, markdownText, editingFile, saveFile, articlesPage, isMobile, loadExtras }
+    return { source, markdownText, editingFile, saveFile, articlesPage, isMobile, loadExtras, info }
   }
 }
 </script>
