@@ -56,8 +56,6 @@ import router from '../router/router'
 import { db } from '../use/useFirebase'
 import { useMobile } from '../use/useMobile'
 import Modal from '../components/Modal'
-import _ from 'lodash'
-
 
 export default {
   components: {
@@ -125,10 +123,6 @@ export default {
       })
 
       }, 200)
-    }
-
-    const saveFile = () => {
-      _.debounce(updateFirebase, 150)
     }
 
     return { source, markdownText, editingFile, saveFile, articlesPage, isMobile, loadExtras, info, updateFirebase }
