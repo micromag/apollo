@@ -61,7 +61,7 @@
 
     	<div id="app" style="overflow-x:auto;">
 
-		<table class="w-full shadow-lg rounded-lg" v-if="tab === '1'">
+		<table class="w-full shadow-lg rounded-lg bg-white dark:bg-gray-700" v-if="tab === '1'">
 			<thead class="rounded-lg">
 				<tr class="text-left bg-gray-300 border-b border-grey uppercase dark:bg-gray-800 ">
 			        <th class="text-sm text-gray-700 px-4 py-6 dark:text-white">Author Name</th>
@@ -123,7 +123,7 @@
 	     </tbody>
 	    </table>
 
-		<table class="w-full shadow-lg rounded-lg" v-if="tab === '2'">
+		<table class="w-full shadow-lg rounded-lg bg-white dark:bg-gray-700" v-if="tab === '2'">
 			<thead class="rounded-lg">
 				<tr class="text-left bg-gray-300 border-b border-grey uppercase dark:bg-gray-800">
 			        <th class="text-sm text-gray-700 px-4 py-6 dark:text-white">Author Name</th>
